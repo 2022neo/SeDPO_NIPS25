@@ -2,12 +2,12 @@
 
 # model type. One of [hf_bert, fairseq_roberta]
 encoder_model_type: hf_bert
-pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/google-bert/bert-base-uncased
+pretrained_model_cfg: google-bert/bert-base-uncased
 pretrained_file:
 
 # encoder_model_type: fairseq_roberta
-# pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/FacebookAI/roberta-base
-# pretrained_file: /ssdwork/yuwen/SE-DPO/cache/roberta.base
+# pretrained_model_cfg: ./cache/FacebookAI/roberta-base
+# pretrained_file: ./cache/roberta.base
 
 
 # Extra linear layer on top of standard bert/roberta encoder

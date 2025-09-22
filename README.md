@@ -23,8 +23,8 @@ You have following tasks to run: `paraphrase reading nli coreference`
 export NUM_OF_GPUS=8 # based on CUDA_VISIBLE_DEVICES
 export RETRIEVER_BSZ=16 # 32 by default
 export SCORER_BSZ=10
-export SCORE_LLM='/ssdwork/yuwen/SE-DPO/cache/Meta-Llama-3-8B-Instruct'
-export INF_LLM='/ssdwork/yuwen/SE-DPO/cache/Meta-Llama-3-8B-Instruct'
+export SCORE_LLM='EleutherAI/gpt-neo-2.7B'
+export INF_LLM='EleutherAI/gpt-neo-2.7B'
 # config for hugging face biencoder: `${PWD}/DPR/conf/encoder/hf_bert.yaml`
 # google-bert/bert-base-uncased
 ```
