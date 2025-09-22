@@ -113,8 +113,8 @@ Change the setting in `./DPR/conf/encoder/hf_bert.yaml` as follows:
 
 # download roberta from its offical sources
 encoder_model_type: fairseq_roberta
-pretrained_model_cfg: ./cache/FacebookAI/roberta-base
-pretrained_file: ./cache/roberta.base
+pretrained_model_cfg: ${PWD}/cache/FacebookAI/roberta-base
+pretrained_file: ${PWD}/cache/roberta.base
 ```
 
 ## Citation
