@@ -104,16 +104,17 @@ sh run_se2_sedpo.sh paraphrase my_data/experiment/paraphrase/saves/dp2-r1d0-b0d0
 ```
 
 ## Enhance SEDPO with RoBERTa
-Change the setting in `/ssdwork/yuwen/SeDPO_NIPS25/DPR/conf/encoder/hf_bert.yaml` as follows:
+Change the setting in `./DPR/conf/encoder/hf_bert.yaml` as follows:
 
 ```bash
 # encoder_model_type: hf_bert
-# pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/google-bert/bert-base-uncased
+# pretrained_model_cfg: google-bert/bert-base-uncased
 # pretrained_file:
 
+# download roberta from its offical sources
 encoder_model_type: fairseq_roberta
-pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/FacebookAI/roberta-base
-pretrained_file: /ssdwork/yuwen/SE-DPO/cache/roberta.base
+pretrained_model_cfg: ./cache/FacebookAI/roberta-base
+pretrained_file: ./cache/roberta.base
 ```
 
 ## Citation
