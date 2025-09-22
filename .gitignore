@@ -1,3 +1,9 @@
+# user customizations for Python projects
+my_data
+cache
+outputs
+scripts
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

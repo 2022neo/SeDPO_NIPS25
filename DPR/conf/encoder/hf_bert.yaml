@@ -1,0 +1,27 @@
+# @package _group_
+
+# model type. One of [hf_bert, fairseq_roberta]
+encoder_model_type: hf_bert
+pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/google-bert/bert-base-uncased
+pretrained_file:
+
+# encoder_model_type: fairseq_roberta
+# pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/FacebookAI/roberta-base
+# pretrained_file: /ssdwork/yuwen/SE-DPO/cache/roberta.base
+
+
+# Extra linear layer on top of standard bert/roberta encoder
+projection_dim: 0
+
+# Max length of the encoder input sequence
+sequence_length: 512
+
+dropout: 0.1
+
+# whether to fix (don't update) context encoder during training or not
+fix_ctx_encoder: False
+
+# if False, the model won't load pre-trained BERT weights
+pretrained: True
+
+cache_dir: ???
