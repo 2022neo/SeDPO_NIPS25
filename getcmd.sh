@@ -7,11 +7,12 @@ export INF_LLM=${INF_LLM:-'EleutherAI/gpt-neo-2.7B'} # LLM for inference
 
 retriever_bsz=${RETRIEVER_BSZ:-32}
 num_of_gpus=${NUM_OF_GPUS:-8}
+export PYTHONPATH=$PWD:$PYTHONPATH
 for task in paraphrase reading nli coreference;do
     export TASK=${task}
     export TRAIN_CLUSTERS=${task}
     export TEST_CLUSTERS=${task}
-    python get_cmds.py \
+    python scripts/get_cmds.py \
         --output_dir ${OUTPUT_DIR} \
         --model_folder "model" \
         --train_clusters ${TRAIN_CLUSTERS} \
