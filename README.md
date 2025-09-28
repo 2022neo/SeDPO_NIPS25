@@ -7,10 +7,10 @@
 </div>
 
 
-> **📝 Paper: https://neurips.cc/virtual/2025/poster/117557**<br/>
-> **🐙 Github: https://github.com/2022neo/SeDPO_NIPS25**<br/>
-> ✒️ Author: Yuwen Ji<sup> *</sup>, Luodan Zhang<sup> *</sup>, Ambyer Han<sup> *</sup>, Haoran Que, Lei Shi, Wang Chao, Yue Zhang <sup>†</sup> \
-> 📧 Contact: {zhangluodan, zhangyue, jiyuwen}@westlake.edu.cn<br/>
+> **📝 Paper**: https://neurips.cc/virtual/2025/poster/117557<br/>
+> **🐙 Github**: https://github.com/2022neo/SeDPO_NIPS25<br/>
+> ✒️ **Author**: Yuwen Ji<sup> *</sup>, Luodan Zhang<sup> *</sup>, Ambyer Han<sup> *</sup>, Haoran Que, Lei Shi, Wang Chao, Yue Zhang <sup>†</sup> \
+> 📧 **Contact**: {zhangluodan, zhangyue, jiyuwen}@westlake.edu.cn<br/>
 
 
 ## 📢 News!
