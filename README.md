@@ -142,7 +142,7 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
 | **SE-DPO** | **61.6±0.4** | **66.2±1.7** | **90.7±0.2** | **72.8±0.6**↑ | **70.6±0.1** | **72.0±0.3** | **71.3±0.2**↑ |
 
 ## Ablation Study
-- Finetune pretrained SE-DPO model on $Se^2$, investigating their complementary strength
+- Finetune trained SE-DPO using $Se^2$.
     ```bash
     sh run_sedpo_se2.sh ${task} ${sedpo_model}
 
@@ -151,13 +151,13 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
     ```
     Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_paraphrase.txt`
 
-- Finetune pretrained $Se^2$ model on SE-DPO.
+- Finetune trained $Se^2$ using SE-DPO.
     ```bash
     sh run_se2_sedpo.sh ${task} ${se2_model} ${pref_beta}
     # pref_beta: interval([1.0, 0.001])
 
     # such as:
-    sh run_se2_sedpo.sh paraphrase my_data/experiment/paraphrase/saves/dp2-r1d0-b0d02/dpr_biencoder.best_valid 0.02
+    sh run_se2_sedpo.sh paraphrase my_data/experiment/paraphrase/saves/p0-r1d0/dpr_biencoder.best_valid 0.02
     ```
     Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_paraphrase.txt`
 
