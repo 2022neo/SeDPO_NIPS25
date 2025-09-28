@@ -45,7 +45,7 @@ def get_cmds(args):
             prompt_pool_path = os.path.join(prompt_pool_dir, cluster, task+'_prompts.json')
             random_sample_path = os.path.join(random_sample_dir, cluster, task + '_random_samples')
             find_random_cmd=\
-                f'python find_random_step1.py \
+                f'python scripts/find_random_step1.py \
                 output_path=$PWD/{random_sample_path + "_step1.json"} \
                 task_name={task} +ds_size={args.ds_size} L={task_cls.finder_L} \
                 prompt_pool_path=$PWD/{prompt_pool_path} \
@@ -56,7 +56,7 @@ def get_cmds(args):
             scored_valid_path = os.path.join(scored_dir, cluster, task + '_scored_valid')
             run_scorer_cmd = \
                 f'accelerate launch --multi_gpu --num_processes {args.gpus} --main_process_port {random_port} \
-                scorer.py \
+                scripts/scorer.py \
                 example_file=$PWD/{random_sample_path + "_step1.json"} \
                 output_train_file=$PWD/{scored_train_path + "_step1.json"} \
                 output_valid_file=$PWD/{scored_valid_path + "_step1.json"} \
@@ -66,7 +66,7 @@ def get_cmds(args):
                 hydra.run.dir=$PWD/{exp_path}'
             
             find_random_step2=\
-                f'python find_random_step2.py \
+                f'python scripts/find_random_step2.py \
                 output_path=$PWD/{random_sample_path + "_step2.json"} \
                 train_path=$PWD/{scored_train_path + "_step1.json"} \
                 valid_path=$PWD/{scored_valid_path + "_step1.json"} \
@@ -76,7 +76,7 @@ def get_cmds(args):
                 hydra.run.dir=$PWD/{exp_path}'
             run_scorer_step2 = \
                 f'accelerate launch --multi_gpu --num_processes {args.gpus} --main_process_port {random_port} \
-                scorer.py \
+                scripts/scorer.py \
                 example_file=$PWD/{random_sample_path + "_step2.json"} \
                 output_train_file=$PWD/{scored_train_path + "_step2.json"} \
                 output_valid_file=$PWD/{scored_valid_path + "_step2.json"} \
@@ -86,7 +86,7 @@ def get_cmds(args):
                 hydra.run.dir=$PWD/{exp_path}'
 
             find_random_step3= \
-                f'python find_random_step3.py \
+                f'python scripts/find_random_step3.py \
                 output_path=$PWD/{random_sample_path + "_step3.json"} \
                 train_path=$PWD/{scored_train_path + "_step2.json"} \
                 valid_path=$PWD/{scored_valid_path + "_step2.json"} \
@@ -97,7 +97,7 @@ def get_cmds(args):
 
             run_scorer_step3 = \
                 f'accelerate launch --multi_gpu --num_processes {args.gpus} --main_process_port {random_port} \
-                scorer.py \
+                scripts/scorer.py \
                 example_file=$PWD/{random_sample_path + "_step3.json"} \
                 output_train_file=$PWD/{scored_train_path + "_step3.json"} \
                 output_valid_file=$PWD/{scored_valid_path + "_step3.json"} \
@@ -108,7 +108,7 @@ def get_cmds(args):
             score_cmd_list += [echo_cmd, find_random_cmd, run_scorer_cmd, find_random_step2, run_scorer_step2, find_random_step3, run_scorer_step3]
 
             merge_data_cmd = \
-                f'python merge_data.py \
+                f'python scripts/merge_data.py \
                 step1_train=$PWD/{scored_train_path + "_step1.json"} \
                 step1_valid=$PWD/{scored_valid_path + "_step1.json"} \
                 step2_train=$PWD/{scored_train_path + "_step2.json"} \
@@ -192,7 +192,7 @@ def get_cmds(args):
             retrieve_prompts_outpath += ".json"
         run_inference_cmd = \
             f"accelerate launch --num_processes 1  --main_process_port {random_port} \
-            inference.py prompt_file=$PWD/{retrieve_prompts_outpath} \
+            scripts/inference.py prompt_file=$PWD/{retrieve_prompts_outpath} \
             task_name={task} \
             output_file=$PWD/{pred_outpath} \
             res_file=$PWD/{eval_res_outpath} \
@@ -241,7 +241,7 @@ def get_cmds(args):
                 echo_cmd = f'echo "bm25 retrieves on {task} task of {cluster} cluster..."'
                 retrieve_prompts_outpath = os.path.join(exp_path, f'bm25_prompts_for_{cluster}', f'{task}_prompts.json')
                 retrieve_bm25_prompts_cmd = \
-                    f'python retrieve_bm25.py \
+                    f'python scripts/retrieve_bm25.py \
                     train_clusters={args.train_clusters} \
                     task_name={task} cache_dir=$PWD/{args.cache_dir} \
                     prompt_pool_path=$PWD/{prompt_pool_dir} \
@@ -254,7 +254,7 @@ def get_cmds(args):
                 echo_cmd = f'echo "sbert retrieves on {task} task of {cluster} cluster..."'
                 retrieve_prompts_outpath = os.path.join(exp_path, f'sbert_prompts_for_{cluster}', f'{task}_prompts.json')
                 retrieve_sbert_prompts_cmd = \
-                    f'python retrieve_sbert.py \
+                    f'python scripts/retrieve_sbert.py \
                     train_clusters={args.train_clusters} \
                     task_name={task} cache_dir=$PWD/{args.cache_dir} \
                     prompt_pool_path=$PWD/{prompt_pool_dir} \
