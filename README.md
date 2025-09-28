@@ -6,7 +6,7 @@
 </p>
 </div>
 
-> 📝 **Paper**: Coming soon!<br/>
+> 📝 **Paper**: https://openreview.net/forum?id=WyQ20adbUb<br/>
 > 🎞️ **Video**: Coming soon!<br/>
 > 🐹 **Poster**: https://neurips.cc/virtual/2025/poster/117557<br/>
 > 🐶 **Github**: https://github.com/2022neo/SeDPO_NIPS25<br/>
