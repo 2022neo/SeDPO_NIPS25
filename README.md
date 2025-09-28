@@ -178,7 +178,7 @@ pretrained_file: ${PWD}/cache/roberta.base
 
 ## Citation
 
-Our code is largely borrowed from [$Se^2$](https://github.com/microsoft/LMOps/tree/main/se2) and [DPR](https://github.com/facebookresearch/DPR). Thanks for their awesome codebases. If you find our code or models useful in your work, please cite our paper.
+Our code is largely borrowed from [*Se²*](https://github.com/microsoft/LMOps/tree/main/se2) and [DPR](https://github.com/facebookresearch/DPR). Thanks for their awesome codebases. If you find our code or models useful in your work, please cite our paper.
 ```bibtex
 @inproceedings{
 anonymous2025learning,
