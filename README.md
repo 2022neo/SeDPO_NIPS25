@@ -16,7 +16,7 @@
 
 ## 📢 News!
 - **[2025/10/xx]** We released our codes! 
-- **[2025/10/xx]** We released our paper on NeurIPS 2025.
+- **[2025/9/18]** Our paper is accepted by NeurIPS'2025! 
 
 ## 📄 Introduction
 
