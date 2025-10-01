@@ -54,7 +54,7 @@ You can change these environment settings at `./getcmd.sh`.
 ### Generate Experiment Scripts
 Generate experiment scripts to `./my_data/experiment` by running:
 ```bash
-cd SE-DPO
+cd SeDPO_NLPS25
 sh getcmd.sh
 ```
 **Attention!** You must **rerun** this command once environment settings change.
