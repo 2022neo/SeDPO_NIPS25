@@ -48,7 +48,7 @@ export SCORER_BSZ=10
 export SCORE_LLM='EleutherAI/gpt-neo-2.7B'
 export INF_LLM='EleutherAI/gpt-neo-2.7B'
 # config for huggingface biencoder: `${PWD}/DPR/conf/encoder/hf_bert.yaml`
-# google-bert/bert-base-uncased
+# we base the retriever on google-bert/bert-base-uncased
 ```
 You can change these environment settings at `./getcmd.sh`. 
 
