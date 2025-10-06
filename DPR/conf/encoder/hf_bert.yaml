@@ -2,7 +2,7 @@
 
 # model type. One of [hf_bert, fairseq_roberta]
 encoder_model_type: hf_bert
-pretrained_model_cfg: google-bert/bert-base-uncased
+pretrained_model_cfg: /ssdwork/yuwen/SE-DPO/cache/google-bert/bert-base-uncased
 pretrained_file:
 
 # encoder_model_type: fairseq_roberta

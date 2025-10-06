@@ -1,10 +1,8 @@
 from sklearn.metrics import f1_score, matthews_corrcoef
 import numpy as np
-from rouge import Rouge
 from src.utils import qa_utils
-from datasets import load_metric
 import re
-from nltk.translate.bleu_score import sentence_bleu, corpus_bleu
+
 
 from src.utils.eval_many import eval_many_mtop
 
@@ -49,6 +47,7 @@ def exact_match(preds, labels, return_list=False):
 @metric_dict.add("rouge")
 def rouge(preds, labels, return_list=False):
     # https://github.com/pltrdy/rouge
+    from rouge import Rouge
     r1s, r2s, rls = [], [], []
     r = Rouge()
     for i in range(len(labels)):
@@ -154,6 +153,7 @@ def acc_and_matthews_corrcoef(preds, labels):
 
 @metric_dict.add("bleu")
 def bleu(preds, labels, return_list=False):
+    from datasets import load_metric
     BLEU = load_metric("bleu")
     bleu_score = []
     for i in range(len(labels)):
@@ -170,6 +170,7 @@ def bleu(preds, labels, return_list=False):
     return sum(bleu_score)/len(bleu_score)
 
 def nltk_blue(preds, labels):
+    from nltk.translate.bleu_score import sentence_bleu, corpus_bleu
     predictions = [[ch for ch in text] for text in preds]
     references = [[[ch for ch in label]] for label in labels]
     score = corpus_bleu(hypotheses=predictions, list_of_references=references)

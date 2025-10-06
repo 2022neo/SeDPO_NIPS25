@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
+
 import hydra
 import tqdm
 import numpy as np
@@ -6,7 +10,6 @@ from rank_bm25 import BM25Okapi
 import multiprocessing
 from DPR.dpr.utils.tasks import task_map, get_prompt_files
 from DPR.dpr.utils.data_utils import read_data_from_json_files
-import os
 import logging
 
 logger = logging.getLogger(__name__)
@@ -124,7 +127,7 @@ def find(cfg):
     logger.info("Saved results * scores to %s", cfg.out_file)
 
 
-@hydra.main(config_path="configs", config_name="bm25_retriever")
+@hydra.main(config_path="../configs", config_name="bm25_retriever")
 def main(cfg):
     print(cfg)
     os.makedirs(os.path.dirname(cfg.out_file), exist_ok=True)

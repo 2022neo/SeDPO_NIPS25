@@ -18,6 +18,9 @@ class ListWrapper:
     
     def to(self, device):
         return self.data
+    
+    def __len__(self):
+        return len(self.data)
 
 
 @dataclass
@@ -35,9 +38,8 @@ class DataCollatorWithPaddingAndCuda:
         features = {key: [example[key] for example in features] for key in features[0].keys()}
         left_pad=(self.tokenizer.padding_side=="left")
         features={key: pad2sameLen(features[key],pad_idx=self.tokenizer.pad_token_id if 'input_ids' in key else 0, left_pad=left_pad) for key in features.keys()}
-        # for key in features.keys(): dic[key]=pad2sameLen(features[key])
         batch=BatchEncoding(features,tensor_type="pt")
-        batch['metadata'] = ListWrapper(metadata)
         if self.device:
             batch = batch.to(self.device)
+        batch['metadata'] = metadata
         return batch

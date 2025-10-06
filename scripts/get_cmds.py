@@ -1,9 +1,8 @@
-'''
-print out cmds for training and inference
-'''
+import os
+import sys
+sys.path.insert(0, os.getcwd())
 
 import argparse
-import os
 from DPR.dpr.utils.tasks import task_map, train_cluster_map, test_cluster_map
 import random
 import textwrap

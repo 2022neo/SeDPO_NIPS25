@@ -1,4 +1,4 @@
-# SE-DPO: Learning to Rank for In-Context Example Retrieval
+# SeDPO: Learning to Rank for In-Context Example Retrieval
 
 <div id="top" align="center">
 <p align="center">
@@ -33,9 +33,10 @@
 ## ⚙️ Preparation before Start
 ### Install Dependencies
 ```bash
+cd SeDPO_NIPS25
 conda create -n se_dpo python=3.12
 conda activate se_dpo
-bash install.sh
+pip install -r requirements.txt
 ```
 
 ### Environment Settings
@@ -46,7 +47,7 @@ export RETRIEVER_BSZ=32
 export SCORER_BSZ=10
 export SCORE_LLM='EleutherAI/gpt-neo-2.7B'
 export INF_LLM='EleutherAI/gpt-neo-2.7B'
-# config for hugging face biencoder: `${PWD}/DPR/conf/encoder/hf_bert.yaml`
+# config for huggingface biencoder: `${PWD}/DPR/conf/encoder/hf_bert.yaml`
 # google-bert/bert-base-uncased
 ```
 You can change these environment settings at `./getcmd.sh`. 
@@ -54,20 +55,17 @@ You can change these environment settings at `./getcmd.sh`.
 ### Generate Experiment Scripts
 Generate experiment scripts to `./my_data/experiment` by running:
 ```bash
-cd SeDPO_NLPS25
 sh getcmd.sh
 ```
 **Attention!** You must **rerun** this command once environment settings change.
 
-## Quick Start SE-DPO 
+## Quick Start SeDPO 
 
 ### Stage 1: Scoring
-<!-- - Download [processed datasets](https://pan.baidu.com/s/15ML_hoYgvTSOxNE-z8tdew?pwd=w9p3) to `./cache/saved_datasets`, or download and parse raw datasets by running: 
-    ```
-    python `./DPR/dpr/utils/tasks.py`.
-    ``` -->
+Download [scored](https://drive.google.com/drive/folders/1yuYXcECdDcX1SeRyG1GkszGiM7qVxrDT?usp=drive_link) and [prompt_pool](https://drive.google.com/drive/folders/1Tiu1BFrfuIktmbPdyztVOi8f8sBwiIoS?usp=drive_link) folders to `./my_data/scored` and `./my_data/prompt_pool` respectively.
 
-Download [scored](https://drive.google.com/drive/folders/1yuYXcECdDcX1SeRyG1GkszGiM7qVxrDT?usp=drive_link) and [prompt_pool](https://drive.google.com/drive/folders/1Tiu1BFrfuIktmbPdyztVOi8f8sBwiIoS?usp=drive_link) folders to `./my_data/scored` and `./my_data/prompt_pool` respectively, or you can generate from scratch by running:
+
+**(Not recommended)** Or you can generate `./my_data/scored` and `./my_data/prompt_pool` from scratch by running:
 ```bash
 sh get_score.sh ${task}
 # task: paraphrase, reading, nli, coreference
@@ -84,6 +82,9 @@ sh run_sedpo.sh ${task} ${pref_beta}
 
 # such as:
 sh run_sedpo.sh paraphrase 0.02
+sh run_sedpo.sh coreference 0.1
+sh run_sedpo.sh nli 0.02
+sh run_sedpo.sh reading 0.1
 ```
 Trained ckpt will be saved to `./my_data/experiment/paraphrase/saves/dp2-r1d0-b0d02`
 
@@ -103,7 +104,7 @@ For a specific task, check Training Log to ensure all subsets are included in "d
 
 ## Baseline $Se^2$
 ### Stage 1: Scoring
-The same as SE-DPO, prepare `./my_data/scored` and `./my_data/prompt_pool` folders.
+The same as SeDPO, prepare `./my_data/scored` and `./my_data/prompt_pool` folders.
 ### Stage 2 & 3: Training & Inference
 
 ```bash
@@ -128,7 +129,7 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
 | UDR | 65.9±4.6 | 75.4±3.5 | 51.8±1.2 | 74.1±1.9 | 67.9±2.4 | 67.0±1.2 | 52.0±4.7 |
 | UPRISE | 74.0±0.8 | 83.3±0.1 | 49.1±0.0 | 71.0±1.0 | 69.8±0.1 | 69.4±0.2 | 46.5±2.2 |
 | Se² | 77.6±0.4 | 85.4±0.3 | 54.7±0.1 | 75.5±0.1 | 72.8±0.0 | 73.2±0.2 | 55.1±0.9 |
-| **SE-DPO** | **77.9±0.9** | **85.6±0.2** | **73.0±2.9** | **77.6±0.6** | **75.0±0.2** | **77.9±0.6** | **62.5±0.2** |
+| **SeDPO** | **77.9±0.9** | **85.6±0.2** | **73.0±2.9** | **77.6±0.6** | **75.0±0.2** | **77.9±0.6** | **62.5±0.2** |
 
 | Method | MultiRC (f1) | BoolQ (acc) | AGNews (acc) | Reading Avg. | MNLI-m (acc) | MNLI-mm (acc) | NLI Avg. |
 |--------|--------------|-------------|--------------|--------------|--------------|---------------|----------|
@@ -139,10 +140,10 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
 | UDR | 55.3±3.1 | 54.6±1.9 | 88.5±1.0 | 66.1±0.9 | 62.7±1.5 | 65.0±1.3 | 63.8±1.4 |
 | UPRISE | 55.4±0.2 | 61.5±0.1 | 90.6±0.8 | 69.2±0.1 | 68.5±0.1 | 70.3±0.3 | 69.4±0.2 |
 | Se² | 47.1±3.3 | 64.1±2.2 | 90.7±0.3 | 67.3±0.7 | 69.4±0.2 | 70.4±0.1 | 69.9±0.2 |
-| **SE-DPO** | **61.6±0.4** | **66.2±1.7** | **90.7±0.2** | **72.8±0.6** | **70.6±0.1** | **72.0±0.3** | **71.3±0.2** |
+| **SeDPO** | **61.6±0.4** | **66.2±1.7** | **90.7±0.2** | **72.8±0.6** | **70.6±0.1** | **72.0±0.3** | **71.3±0.2** |
 
 ## Ablation Study
-- Finetune trained SE-DPO using $Se^2$.
+- Finetune trained SeDPO using $Se^2$.
     ```bash
     sh run_sedpo_se2.sh ${task} ${sedpo_model}
 
@@ -151,7 +152,7 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
     ```
     Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_paraphrase.txt`
 
-- Finetune trained $Se^2$ using SE-DPO.
+- Finetune trained $Se^2$ using SeDPO.
     ```bash
     sh run_se2_sedpo.sh ${task} ${se2_model} ${pref_beta}
     # pref_beta: interval([1.0, 0.001])
@@ -161,7 +162,7 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
     ```
     Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_paraphrase.txt`
 
-## Enhance SE-DPO with RoBERTa
+## Enhance SeDPO with RoBERTa
 Change the setting in `./DPR/conf/encoder/hf_bert.yaml` as follows:
 
 ```bash

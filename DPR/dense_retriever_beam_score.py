@@ -220,6 +220,8 @@ def save_results(
                 "score": seq_score[q]
             }
         )
+        # print(type(seq_score[q]), seq_score[q])
+        # input("debug")
 
     os.makedirs(os.path.dirname(out_file), exist_ok=True)
     with open(out_file, "w") as writer:
@@ -413,7 +415,7 @@ def main(cfg: DictConfig):
         meta = meta_data[i]
         q = questions[i]
         have_choosen[q] = [meta["id"]]
-        seq_score[q] = 0
+        seq_score[q] = 0.0
         beam_seq[i][0] = [q]
 
     for j in range(few_shot_num):
@@ -441,7 +443,7 @@ def main(cfg: DictConfig):
                         doc = all_passages[doc_id][0]
                         next_seq = doc + " \n " + seq
                         have_choosen[next_seq] = have_choosen[seq] + [doc_id]
-                        seq_score[next_seq] = seq_score[seq] + score
+                        seq_score[next_seq] = seq_score[seq] + float(score)
                         if next_seq not in qid_to_candidate[i]: 
                             qid_to_candidate[i][next_seq] = seq_score[next_seq]
                             t -= 1

@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
+
 import torch
 import tqdm
 from torch.utils.data import DataLoader
@@ -237,7 +241,7 @@ def get_qcid(mitem):
     qcid = (qid,cid)
     return qcid
 
-@hydra.main(config_path="configs",config_name="scorer")
+@hydra.main(config_path="../configs",config_name="scorer")
 def main(cfg):
     logger.info(cfg)
     if Path(cfg.output_train_file).exists() and Path(cfg.output_valid_file).exists():

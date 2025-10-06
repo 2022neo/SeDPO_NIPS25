@@ -1,10 +1,8 @@
 import hydra
-import tqdm
 import json
 import random
-import os
 
-@hydra.main(config_path="configs", config_name="merge_data")
+@hydra.main(config_path="../configs", config_name="merge_data")
 def main(cfg):
     print(cfg)
 

@@ -214,13 +214,10 @@ class Se2Dataset(Dataset):
             random.sample(entry["ctxs"],k=round(len(entry["ctxs"])*SCORE_RATIO)),
             key=lambda x:x['loss']
         )
-        # if self.split == "valid" and False:
-        #     return self.get_prefer_entry(entry)
         
         if IF_PREFER_LOSS==0:
             return self.get_old_entry(entry)
         elif IF_PREFER_LOSS==1:
-            # return self.get_prefer_entry(entry)
             return self.get_multi_prefer_entry(entry,bottom_sample=True,positive_chosen=False)
         elif IF_PREFER_LOSS==-1:
             return self.get_udr_rank_entry(entry)

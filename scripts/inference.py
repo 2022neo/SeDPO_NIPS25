@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
+
 import warnings
 import torch
 import tqdm
@@ -6,7 +10,6 @@ from src.data.collators import DataCollatorWithPaddingAndCuda
 import hydra.utils as hu
 import hydra
 import json
-import os
 from src.utils.cache_util import BufferedJsonWriter, BufferedJsonReader
 from accelerate import Accelerator
 from src.utils.metric import compute_scores
@@ -23,8 +26,6 @@ DIV_REJECT = int(os.environ.get('DIV_REJECT', 0))
 assert 0<=SCORE_RATIO<=1
 logger = logging.getLogger(__name__)
 
-import random
-import numpy as np
 
 
 class Inferencer:
@@ -132,15 +133,9 @@ class Inferencer:
             f"{self.output_file}tmp_{self.accelerator.device}.bin"
         ) as buffer:
             for i, entry in enumerate(dataloader):
-                # nlu_reading 3864
                 if "stop" in self.cfg and i == self.cfg.stop:
                     break  # pass stop for debug
                 metadata = entry.pop("metadata")
-                # cache_key = json.dumps(metadata)
-                # if cache_key in self.cached_infer:
-                #     metadata = self.cached_infer[cache_key]
-                #     buffer.write(metadata)
-                #     continue
                 if self.dataset_reader.task.class_num == 1:
                     few_shot_res = self.completion_losses(
                         input_ids=entry.input_ids,
@@ -158,7 +153,7 @@ class Inferencer:
                     metadata[i]["pred"] = few_shot_res["preds"][i]
                     metadata[i]["label"] = few_shot_res["labels"][i]
                 buffer.write(metadata)
-                # self.cached_infer[cache_key]=metadata
+
 
     def write_predictions(self):
         data = []
@@ -187,6 +182,7 @@ class Inferencer:
                 version_info = f"p{IF_PREFER_LOSS}-r{SCORE_RATIO}-b{PEFT_BETA}"
                 if DIV_REJECT:
                     version_info="d"+version_info
+                retriever = "SeDPO" if retriever=="Se2" else retriever
             else:
                 version_info = f"p{IF_PREFER_LOSS}-r{SCORE_RATIO}"
             model_file = os.environ.get('PT_MODEL', False)
@@ -207,7 +203,7 @@ class Inferencer:
             os.remove(path)
         return data
 
-@hydra.main(config_path="configs", config_name="inference")
+@hydra.main(config_path="../configs", config_name="inference")
 def main(cfg):
     logger.info(cfg)
     accelerator = Accelerator()

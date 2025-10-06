@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
+
 import hydra.utils as hu 
 import hydra
 from hydra.core.hydra_config import HydraConfig
@@ -127,7 +131,7 @@ def find(cfg):
     logger.info("Saved results * scores  to %s", cfg.out_file)
 
 
-@hydra.main(config_path="configs",config_name="sbert_retriever")
+@hydra.main(config_path="../configs",config_name="sbert_retriever")
 def main(cfg):
     logger.info(cfg)
     os.makedirs(os.path.dirname(cfg.out_file), exist_ok=True)

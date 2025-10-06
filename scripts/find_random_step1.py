@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
 import hydra
 import tqdm
 import json
@@ -5,7 +8,6 @@ import random
 import os
 from DPR.dpr.utils.tasks import task_map
 from pathlib import Path
-import shutil
 
 class RandomFinder:
     def __init__(self, cfg) -> None:
@@ -51,7 +53,7 @@ def find(cfg):
     return data_list
 
 
-@hydra.main(config_path="configs", config_name="random_finder")
+@hydra.main(config_path="../configs", config_name="random_finder")
 def main(cfg):
     print(cfg)
     if Path(cfg.output_path).exists() and Path(cfg.prompt_pool_path).exists():
