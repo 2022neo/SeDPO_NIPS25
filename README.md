@@ -42,8 +42,10 @@ pip install -r requirements.txt
 ### Environment Settings
 The default environment settings is:
 ```bash
-export NUM_OF_GPUS=8 # based on CUDA_VISIBLE_DEVICES
-export RETRIEVER_BSZ=32
+export NUM_OF_GPUS=8 # Number of available GPUs for parallel (DDP) training
+export RETRIEVER_BSZ=32 # This is per-GPU batch size, and it requires approximately 32*2GB of memory per GPU
+
+# You can ignore the following settings when downloading the scored dataset we provide.
 export SCORER_BSZ=10
 export SCORE_LLM='EleutherAI/gpt-neo-2.7B'
 export INF_LLM='EleutherAI/gpt-neo-2.7B'
