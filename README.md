@@ -6,7 +6,7 @@
 </p>
 </div>
 
-> 📝 **Paper**: https://openreview.net/forum?id=WyQ20adbUb<br/>
+> 📝 **Paper**: Coming soon!<br/>
 > 🎞️ **Video**: Coming soon!<br/>
 > 🐹 **Poster**: https://neurips.cc/virtual/2025/poster/117557<br/>
 > 🐶 **Github**: https://github.com/2022neo/SeDPO_NIPS25<br/>
@@ -16,7 +16,7 @@
 
 ## 📢 News!
 - **[2025/10/xx]** We released our codes ! 
-- **[2025/9/18]** Our paper is accepted by NeurIPS'2025 ! 
+- **[2025/9/18]** SeDPO has been accepted to NeurIPS'2025 Main Track ! 
 
 ## 📄 Introduction
 
@@ -85,8 +85,8 @@ sh run_sedpo.sh ${task} ${pref_beta}
 # such as:
 sh run_sedpo.sh paraphrase 0.02
 sh run_sedpo.sh coreference 0.1
-sh run_sedpo.sh nli 0.02
-sh run_sedpo.sh reading 0.1
+sh run_sedpo.sh nli 0.01
+sh run_sedpo.sh reading 0.05
 ```
 Trained ckpt will be saved to `./my_data/experiment/paraphrase/saves/dp2-r1d0-b0d02`
 
@@ -141,8 +141,8 @@ Inference result will be saved to `./my_data/experiment/paraphrase/eval_res_for_
 | SBERT | 49.3±0.0 | 58.1±0.0 | 84.7±0.0 | 64.0±0.0 | 37.3±0.0 | 37.3±0.0 | 37.3±0.0 |
 | UDR | 55.3±3.1 | 54.6±1.9 | 88.5±1.0 | 66.1±0.9 | 62.7±1.5 | 65.0±1.3 | 63.8±1.4 |
 | UPRISE | 55.4±0.2 | 61.5±0.1 | 90.6±0.8 | 69.2±0.1 | 68.5±0.1 | 70.3±0.3 | 69.4±0.2 |
-| Se² | 47.1±3.3 | 64.1±2.2 | 90.7±0.3 | 67.3±0.7 | 69.4±0.2 | 70.4±0.1 | 69.9±0.2 |
-| **SeDPO** | **61.6±0.4** | **66.2±1.7** | **90.7±0.2** | **72.8±0.6** | **70.6±0.1** | **72.0±0.3** | **71.3±0.2** |
+| Se² | 52.1±2.3 | 63.6±0.2 | 90.8±0.3 | 68.8±0.7 | 69.4±0.2 | 70.4±0.1 | 69.9±0.2 |
+| **SeDPO** | **60.3±0.4** | **64.6±1.7** | **91.0±0.2** | **72.0±0.6** | **70.6±0.1** | **72.0±0.3** | **71.3±0.2** |
 
 ## Ablation Study
 - Finetune trained SeDPO using $Se^2$.

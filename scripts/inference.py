@@ -61,7 +61,6 @@ class Inferencer:
 
         self.cfg = cfg
         self.option_num = self.dataset_reader.task.class_num
-        self.shot_num = cfg.shot_num
         self.random_sample = cfg.random_sample
         self.max_length = cfg.max_length  # used for text completion task,
         self.generate_max_len = cfg.generate_max_len  # max seq len to be generated
@@ -182,7 +181,7 @@ class Inferencer:
                 version_info = f"p{IF_PREFER_LOSS}-r{SCORE_RATIO}-b{PEFT_BETA}"
                 if DIV_REJECT:
                     version_info="d"+version_info
-                retriever = "SeDPO" if retriever=="Se2" else retriever
+                retriever = "SeDPO" if retriever=="se2" else retriever
             else:
                 version_info = f"p{IF_PREFER_LOSS}-r{SCORE_RATIO}"
             model_file = os.environ.get('PT_MODEL', False)

@@ -186,23 +186,36 @@ def get_cmds(args):
         if retriever == 'se2':
             pred_outpath += '_0.json'
             retrieve_prompts_outpath += "_beam_score_0.json"
+            run_inference_cmd = \
+                f"accelerate launch --num_processes 1  --main_process_port {random_port} \
+                scripts/inference.py prompt_file=$PWD/{retrieve_prompts_outpath} \
+                task_name={task} \
+                output_file=$PWD/{pred_outpath} \
+                res_file=$PWD/{eval_res_outpath} \
+                batch_size={args.inference_bsz} \
+                train_clusters={args.train_clusters} \
+                model_name={args.inf_model} \
+                prompt_pool_path=$PWD/{prompt_pool_dir} \
+                random_sample={random} random_seed=42 \
+                cache_dir=$PWD/{args.cache_dir} \
+                hydra.run.dir=$PWD/{exp_path}"
         else:
             pred_outpath += '.json'
             retrieve_prompts_outpath += ".json"
-        run_inference_cmd = \
-            f"accelerate launch --num_processes 1  --main_process_port {random_port} \
-            scripts/inference.py prompt_file=$PWD/{retrieve_prompts_outpath} \
-            task_name={task} \
-            output_file=$PWD/{pred_outpath} \
-            res_file=$PWD/{eval_res_outpath} \
-            batch_size={args.inference_bsz} \
-            train_clusters={args.train_clusters} \
-            model_name={args.inf_model} \
-            prompt_pool_path=$PWD/{prompt_pool_dir} \
-            shot_num={shot_num} \
-            random_sample={random} random_seed=42 \
-            cache_dir=$PWD/{args.cache_dir} \
-            hydra.run.dir=$PWD/{exp_path}"
+            run_inference_cmd = \
+                f"accelerate launch --num_processes 1  --main_process_port {random_port} \
+                scripts/inference.py prompt_file=$PWD/{retrieve_prompts_outpath} \
+                task_name={task} \
+                output_file=$PWD/{pred_outpath} \
+                res_file=$PWD/{eval_res_outpath} \
+                batch_size={args.inference_bsz} \
+                train_clusters={args.train_clusters} \
+                model_name={args.inf_model} \
+                prompt_pool_path=$PWD/{prompt_pool_dir} \
+                shot_num={shot_num} \
+                random_sample={random} random_seed=42 \
+                cache_dir=$PWD/{args.cache_dir} \
+                hydra.run.dir=$PWD/{exp_path}"
         cmd_list.append(run_inference_cmd)
         return cmd_list
 
