@@ -15,7 +15,7 @@
 
 
 ## 📢 News!
-- **[2025/10/xx]** We released our codes ! 
+- **[2025/10/18]** We released our codes ! 
 - **[2025/9/18]** SeDPO has been accepted to NeurIPS'2025 Main Track ! 
 
 ## 📄 Introduction
