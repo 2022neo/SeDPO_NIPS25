@@ -477,7 +477,6 @@ def main(cfg: DictConfig):
                 cfg.out_file[:-5] + "_beam_score_" + str(k) + ".json",
                 meta_data,
             )
-            break
 
     if cfg.kilt_out_file:
         kilt_ctx = next(
