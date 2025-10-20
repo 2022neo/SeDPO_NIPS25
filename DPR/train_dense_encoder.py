@@ -102,6 +102,8 @@ class BiEncoderTrainer(object):
                 logger.info("Loading saved model state for ref model ...")
                 model_to_load.load_state(saved_state)
                 self.ref_biencoder.eval()
+            for param in self.ref_biencoder.parameters():                                                                                                                             
+                param.requires_grad = False
         else:
             self.ref_biencoder = None
 

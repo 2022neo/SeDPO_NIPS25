@@ -9,6 +9,7 @@
 > 📝 **Paper**: Coming soon!<br/>
 > 🎞️ **Video**: Coming soon!<br/>
 > 🐹 **Poster**: https://neurips.cc/virtual/2025/poster/117557<br/>
+> 📱 **Blog**: https://mp.weixin.qq.com/s/ETH_pgT3BrwrWOuW1arhMw<br/>
 > 🐶 **Github**: https://github.com/2022neo/SeDPO_NIPS25<br/>
 > ✒️ **Authors**: Yuwen Ji<sup> *</sup>, Luodan Zhang<sup> *</sup>, Ambyer Han<sup> *</sup>, Haoran Que, Lei Shi, Wang Chao, Yue Zhang <sup>†</sup> <br/>
 > 📧 **Contact**: {zhangluodan, zhangyue, jiyuwen}@westlake.edu.cn<br/>
@@ -43,7 +44,7 @@ pip install -r requirements.txt
 The default environment settings is:
 ```bash
 export NUM_OF_GPUS=8 # Number of available GPUs for parallel (DDP) training
-export RETRIEVER_BSZ=32 # This is per-GPU batch size, and it requires approximately 32*2GB of memory per GPU
+export RETRIEVER_BSZ=32 # This is per-GPU batch size, and it requires approximately 32*1.2GB of memory per GPU
 
 # You can ignore the following settings when downloading the scored dataset we provide.
 export SCORER_BSZ=10
