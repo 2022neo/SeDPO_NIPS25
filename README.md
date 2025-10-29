@@ -6,7 +6,7 @@
 </p>
 </div>
 
-> 📝 **Paper**: Coming soon!<br/>
+> 📝 **Paper**: https://openreview.net/pdf?id=WyQ20adbUb<br/>
 > 🎞️ **Video**: Coming soon!<br/>
 > 🐹 **Poster**: https://neurips.cc/virtual/2025/poster/117557<br/>
 > 📱 **Blog**: https://mp.weixin.qq.com/s/ETH_pgT3BrwrWOuW1arhMw<br/>
@@ -185,9 +185,9 @@ pretrained_file: ${PWD}/cache/roberta.base
 Our code is largely borrowed from [*Se²*](https://github.com/microsoft/LMOps/tree/main/se2) and [DPR](https://github.com/facebookresearch/DPR). Thanks for their awesome codebases. If you find our code or models useful in your work, please cite our paper.
 ```bibtex
 @inproceedings{
-anonymous2025learning,
+ji2025learning,
 title={Learning to Rank for In-Context Example Retrieval},
-author={Anonymous},
+author={Yuwen Ji and Luodan Zhang and Ambyerhan and Haoran Que and Lei Shi and Wang Chao and Yue Zhang},
 booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
 year={2025},
 url={https://openreview.net/forum?id=WyQ20adbUb}
