@@ -7,7 +7,6 @@
 </div>
 
 > 📝 **Paper**: https://openreview.net/pdf?id=WyQ20adbUb<br/>
-> 🎞️ **Video**: Coming soon!<br/>
 > 🐹 **Poster**: https://neurips.cc/virtual/2025/poster/117557<br/>
 > 📱 **Blog**: https://mp.weixin.qq.com/s/ETH_pgT3BrwrWOuW1arhMw<br/>
 > 🐶 **Github**: https://github.com/2022neo/SeDPO_NIPS25<br/>
